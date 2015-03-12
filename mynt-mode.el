@@ -1,10 +1,11 @@
-;; mynt-mode.el --- Minor mode to work with the mynt static site generator
+;;; mynt-mode.el --- Minor mode to work with the mynt static site generator
 
 ;; Author: Christian Brassat
 ;; URL: https://github.com/crshd/mynt-mode
 ;; Version: 0.1
 ;; Created: 2015-03-12
 ;; Keywords: convenience
+;; Package-Requires: virtualenvwrapper
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -113,3 +114,5 @@
             map))
 
 (provide 'mynt-mode)
+
+;;; mynt-mode.el ends here
