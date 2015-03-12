@@ -54,9 +54,9 @@ Same scenario as above. As a bonus, this also makes sure that _mynt-mode_ is ins
          ("C-m w" . mynt-watch)
          ("C-m s" . mynt-serve)
          ("C-m p" . mynt-make-post))
-  :config (setq mynt-location "~/Sites/crshd.github.io/"
-                mynt-source "io.source/"
-                mynt-destination "io.production/"
+  :config (setq mynt-location "~/Sites/mynt/"
+                mynt-source "source/"
+                mynt-destination "production/"
                 mynt-venv "mynt"))
 ````
 
@@ -66,6 +66,7 @@ _(Author's note: You (really, **really**) should use [use-package][2]._
 
 - The async process management is shit. Basically it's non-existent.
 - Support switching between multiple mynt installs.
+- Support custom frontmatter tags.
 - Submit your ideas.
 
 [1]: http://melpa.org
