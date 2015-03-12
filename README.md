@@ -33,7 +33,7 @@ There are four variables that you need to edit. Assuming you have a mynt site li
       mynt-venv        "mynt")
 ````
 
-Also, you don't care about `C-m` for newline, and want to use it for _mynt-mode_ instead:
+Also, you don't care about <kbd>C-m</kbd> for newline, and want to use it for _mynt-mode_ instead:
 ```` lisp
 (add-hook 'mynt-mode-hook
           '(lambda ()
