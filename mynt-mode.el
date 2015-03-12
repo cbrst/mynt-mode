@@ -2,10 +2,10 @@
 
 ;; Author: Christian Brassat
 ;; URL: https://github.com/crshd/mynt-mode
-;; Version: 0.1
+;; Version: 0.1.1
 ;; Created: 2015-03-12
 ;; Keywords: convenience
-;; Package-Requires: virtualenvwrapper
+;; Package-Requires: ((virtualenvwrapper "20131514"))
 
 ;; This file is NOT part of GNU Emacs.
 
