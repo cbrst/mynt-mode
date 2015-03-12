@@ -11,8 +11,8 @@
 
 ;;; Commentary:
 
-;; mynt is great. But I've gotten sick of switching back and forth between Emacs
-;; and Terminal. That's where this package comes in; common actions around mynt
+;; mynt is great.  But I've gotten sick of switching back and forth between Emacs
+;; and Terminal.  That's where this package comes in; common actions around mynt
 ;; are wrapped in Emacs commands, callable by quick and memorable keybindings.
 ;; Yay!
 
@@ -38,16 +38,19 @@
 ;;; Code:
 
 (defvar mynt-location "~/www/mynt/"
-  "The base location of your mynt install")
+  "The base location of your mynt install.")
 (defvar mynt-source (concat mynt-location "source/")
-  "mynt source directory")
+  "mynt source directory.")
 (defvar mynt-destination (concat mynt-location "output/")
-  "mynt destination (production) directory")
+  "mynt destination (production) directory.")
 (defvar mynt-venv nil
-  "Virtualenv used for mynt")
+  "Virtualenv used for mynt.")
 
 (defun mynt-make-post (title tags layout)
-  "Create a new post for mynt"
+  "Create a new post for mynt.
+Argument TITLE Title of the new post.
+Argument TAGS Comma-separated list of tags for the post.
+Argument LAYOUT Layout to be used.  Defaults to post.html."
   ;; Query for frontmatter values
   (interactive (list
                 (read-string "Title: ")
@@ -69,7 +72,9 @@
     (insert "---\ntitle: " title "\ntags: [" tags "]\nlayout: " layout "\n---\n\n")))
 
 (defun mynt-shell-command (command &optional force source)
-  "Call mynt command"
+  "Call mynt COMMAND.
+Optional argument FORCE Use -f flag.
+Optional argument SOURCE Command takes a source argument."
   (if mynt-venv
       (venv-workon mynt-venv))
   (let ((s (concat mynt-location mynt-source))
@@ -83,22 +88,22 @@
              d))))
 
 (defun mynt-generate ()
-  "Generate mynt output"
+  "Generate mynt output."
   (interactive)
   (mynt-shell-command "gen" t t))
 
 (defun mynt-watch ()
-  "Watch for changes in your mynt source"
+  "Watch for change in your mynt source."
   (interactive)
   (mynt-shell-command "watch" t t))
 
 (defun mynt-serve ()
-  "Serve local mynt"
+  "Serve local mynt."
   (interactive)
   (mynt-shell-command "serve"))
 
 (defun mynt-interrupt-processes ()
-  "Interrupt all mynt processes"
+  "Interrupt all mynt processes."
   (interactive)
   (interrupt-process "mynt"))
 

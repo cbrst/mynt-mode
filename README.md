@@ -54,10 +54,10 @@ Same scenario as above. As a bonus, this also makes sure that _mynt-mode_ is ins
          ("C-m w" . mynt-watch)
          ("C-m s" . mynt-serve)
          ("C-m p" . mynt-make-post))
-  :config (setq mynt-location "~/Sites/mynt/"
-                mynt-source "source/"
+  :config (setq mynt-location    "~/Sites/mynt/"
+                mynt-source      "source/"
                 mynt-destination "production/"
-                mynt-venv "mynt"))
+                mynt-venv        "mynt"))
 ````
 
 _(Author's note: You (really, **really**) should use [use-package][2]._
