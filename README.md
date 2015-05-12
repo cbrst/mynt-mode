@@ -38,7 +38,7 @@ Let's assume you have a site living in `~/Sites/mynt`, with the subdirs `source`
                    (source      . "do")
                    (destination . "did")
                    (venv        . "hah-ha")))))
-				   ````
+````
 
 Now you can switch between them with <kbd>M-x mynt-pick-project</kbd>. All further commands will act on this project only.
 
