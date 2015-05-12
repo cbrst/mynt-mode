@@ -2,7 +2,7 @@
 
 ;; Author: Christian Brassat
 ;; URL: https://github.com/crshd/mynt-mode
-;; Version: 0.2.0
+;; Version: 0.2.1
 ;; Created: 2015-03-12
 ;; Keywords: convenience
 ;; Package-Requires: ((virtualenvwrapper "20131514"))
@@ -47,24 +47,20 @@
   "Virtualenv used for mynt.")
 
 (defvar mynt-projects
-  "Alist of alist of mynt projects."
   '(("default" . ((location    . "~/www/mynt/")
                   (source      . "source")
                   (destination . "output")
-                  (venv        . nil)))))
+                  (venv        . nil))))
+  "Alist of alist of mynt projects.")
 
 (defun mynt-pick-project (project)
   "Pick the current mynt project."
   (interactive (list (completing-read "Choose a project: " mynt-projects)))
   (let ((p (assoc project mynt-projects)))
     (setq mynt-location (cdr (assoc 'location p))
-          mynt-source (concat mynt-location "/" (cdr (assoc 'source p)))
-          mynt-destination (concat mynt-location "/" (cdr (assoc 'destination p)))
-          mynt-venv (concat mynt-location "/" (cdr (assoc 'venv p))))))
-
-(defun mynt-source ()
-  "Get mynt source path."
-  (assoc-default 'source mynt-current-project))
+          mynt-source (cdr (assoc 'source p))
+          mynt-destination (cdr (assoc 'destination p))
+          mynt-venv (cdr (assoc 'venv p)))))
 
 (defun mynt-make-post (title tags layout)
   "Create a new post for mynt.
