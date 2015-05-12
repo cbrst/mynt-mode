@@ -24,16 +24,27 @@ _mynt-mode_ is (will soon be) available on [MELPA][1]. `M-x package-install<RET>
 ## Configuration
 
 ### Manual
-There are four variables that you need to edit. Assuming you have a mynt site living in `~/Sites/mynt`, containing two subdirs for source and production, and using a virtualenv called "mynt" (hey, that pretty much describes me - what a coincidence!), this would look something like this:
+_mynt-mode_ has support for multiple mynt projects. You just have to define them before using them.
+
+Let's assume you have a site living in `~/Sites/mynt`, with the subdirs `source` and `production` and using a virtualenv called "mynt". And you have another one at `~/www/lolblog` with `do` and `did`. And just for good measure, the venv is called `hah-ha`. This would look something like this:
 
 ```` lisp
-(setq mynt-location    "~/Sites/mynt/"
-      mynt-source      "source/"
-      mynt-destination "production/"
-      mynt-venv        "mynt")
-````
+(setq mynt-projects
+  '(("project1" . ((location    . "~/Sites/mynt/")
+                   (source      . "source")
+                   (destination . "production")
+                   (venv        . nil)))
+    ("project2" . ((location    . "~/www/lolblog/")
+                   (source      . "do")
+                   (destination . "did")
+                   (venv        . "hah-ha")))))
+				   ````
 
-Also, you don't care about <kbd>C-m</kbd> for newline, and want to use it for _mynt-mode_ instead:
+Now you can switch between them with <kbd>M-x mynt-pick-project</kbd>. All further commands will act on this project only.
+
+**Note:** By default, the first project defined is enabled.
+
+_mynt-mode_ keybindings start with <kbd>C-c m</kbd>. If you don't care about <kbd>C-m</kbd> for newline (I don't, I use <kbd>C-j</kbd>), and want to use it for _mynt-mode_ instead:
 ```` lisp
 (add-hook 'mynt-mode-hook
           '(lambda ()

@@ -2,7 +2,7 @@
 
 ;; Author: Christian Brassat
 ;; URL: https://github.com/crshd/mynt-mode
-;; Version: 0.1.1
+;; Version: 0.2.0
 ;; Created: 2015-03-12
 ;; Keywords: convenience
 ;; Package-Requires: ((virtualenvwrapper "20131514"))
@@ -37,14 +37,34 @@
 
 ;;; Code:
 
-(defvar mynt-location "~/www/mynt/"
+(defvar mynt-location nil
   "The base location of your mynt install.")
-(defvar mynt-source (concat mynt-location "source/")
+(defvar mynt-source nil
   "mynt source directory.")
-(defvar mynt-destination (concat mynt-location "output/")
+(defvar mynt-destination nil
   "mynt destination (production) directory.")
 (defvar mynt-venv nil
   "Virtualenv used for mynt.")
+
+(defvar mynt-projects
+  "Alist of alist of mynt projects."
+  '(("default" . ((location    . "~/www/mynt/")
+                  (source      . "source")
+                  (destination . "output")
+                  (venv        . nil)))))
+
+(defun mynt-pick-project (project)
+  "Pick the current mynt project."
+  (interactive (list (completing-read "Choose a project: " mynt-projects)))
+  (let ((p (assoc project mynt-projects)))
+    (setq mynt-location (cdr (assoc 'location p))
+          mynt-source (concat mynt-location "/" (cdr (assoc 'source p)))
+          mynt-destination (concat mynt-location "/" (cdr (assoc 'destination p)))
+          mynt-venv (concat mynt-location "/" (cdr (assoc 'venv p))))))
+
+(defun mynt-source ()
+  "Get mynt source path."
+  (assoc-default 'source mynt-current-project))
 
 (defun mynt-make-post (title tags layout)
   "Create a new post for mynt.
@@ -108,6 +128,8 @@ Optional argument SOURCE Command takes a source argument."
   (interrupt-process "mynt"))
 
 ;;;###autoload
+(mynt-pick-project (car (car mynt-projects)))
+
 (define-minor-mode mynt-mode
   "Minor mode to work with mynt"
   :lighter " mynt"
